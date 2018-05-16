@@ -23,9 +23,9 @@ def insertOrUpdate(Id, Name, roll) :                                            
     connect.commit()                                                            # commiting into the database
     connect.close()                                                             # closing the connection
 
-name = raw_input("Enter student's name : ")
-roll = raw_input("Enter student's Roll Number : ")
-Id = roll[-2:]
+name = input("Enter student's name : ")
+roll = input("Enter student's Roll Number : ")
+Id = roll[-5:]
 insertOrUpdate(Id, name, roll)                                                  # calling the sqlite3 database
 
 
