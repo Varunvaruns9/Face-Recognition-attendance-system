@@ -1,1 +1,1 @@
-personGroupId = 'test1'
+personGroupId = 'test'

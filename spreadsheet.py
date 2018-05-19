@@ -4,6 +4,9 @@ import time
 import os
 import sqlite3
 
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 #database connection
 conn = sqlite3.connect('Face-DataBase')
 c = conn.cursor()
@@ -14,7 +17,7 @@ currentDate = time.strftime("%d_%m_%y")
 #create a workbook and add a worksheet
 if(os.path.exists('./reports.xlsx')):
     wb = load_workbook(filename = "reports.xlsx")
-    sheet = wb['Cse15']
+    sheet = wb['attendance']
     # sheet[ord() + '1']
     for col_index in range(1, 200):
     	col = get_column_letter(col_index)
@@ -35,7 +38,7 @@ else:
 
     #creating worksheet and giving names to column
     ws1 = wb.active
-    ws1.title = "Cse15"
+    ws1.title = "attendance"
     ws1.append(('Roll Number', 'Name', currentDate))
     ws1.append(('', '', ''))
 

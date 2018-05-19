@@ -4,6 +4,9 @@ import os
 import sys
 import sqlite3
 
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 #cam = cv2.VideoCapture(1)
 detector = dlib.get_frontal_face_detector()
 

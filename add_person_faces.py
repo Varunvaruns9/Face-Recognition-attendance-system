@@ -5,12 +5,14 @@ from global_variables import personGroupId
 import urllib
 import sqlite3
 
-Key = 'dc1527b9a0114e3fad617f95d71656c1'
+Key = 'e72e6fd9e8964cdab9b1ba2cc1b14c7b'
 CF.Key.set(Key)
 
 BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL
 CF.BaseUrl.set(BASE_URL)
 
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def get_person_id():
 	person_id = ''
 	extractId = str(sys.argv[1])[-5:]
@@ -29,11 +31,12 @@ if len(sys.argv) is not 1:
     person_id = get_person_id()
     for filename in os.listdir(imageFolder):
         if filename.endswith(".jpg"):
-        	print (filename)
-        	imgurl = urllib.request.pathname2url(os.path.join(imageFolder, filename))
-        	res = CF.face.detect(imgurl)
-        	if len(res) != 1:
-        		print ("No face detected in image")
-        	else:
-        		res = CF.person.add_face(imgurl, personGroupId, person_id)
-        		print (res)
+            print (filename)
+            imgurl = urllib.request.pathname2url(os.path.join(imageFolder, filename))
+            res = CF.face.detect(imgurl)
+            time.sleep(6)
+            if len(res) != 1:
+                print ("No face detected in image")
+            else:
+                res = CF.person.add_face(imgurl, personGroupId, person_id)
+                print (res)

@@ -3,7 +3,10 @@ import cognitive_face as CF
 from global_variables import personGroupId
 import sqlite3
 
-Key = 'dc1527b9a0114e3fad617f95d71656c1'
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+Key = 'e72e6fd9e8964cdab9b1ba2cc1b14c7b'
 CF.Key.set(Key)
 
 BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL

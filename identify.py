@@ -6,12 +6,13 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter, cell, column_index_from_string
 import time
 
-
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #get current date
 currentDate = time.strftime("%d_%m_%y")
 wb = load_workbook(filename = "reports.xlsx")
-sheet = wb['Cse15']
+sheet = wb['attendance']
 
 def getDateColumn():
 	for i in range(1, sheet.max_column + 1):
@@ -20,7 +21,7 @@ def getDateColumn():
 			return col
 
 
-Key = 'dc1527b9a0114e3fad617f95d71656c1'
+Key = 'e72e6fd9e8964cdab9b1ba2cc1b14c7b'
 CF.Key.set(Key)
 
 BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL
@@ -52,8 +53,10 @@ for filename in os.listdir(directory):
 				print ("Unknown")
 			else:
 				personId = face['candidates'][0]['personId']
+				print(personId)
 				c.execute("SELECT * FROM Students WHERE personID = ?", (personId,))
 				row = c.fetchone()
+				print (row)
 				attend[int(row[0])-17000] += 1
 				print (row[1] + " recognized")
 

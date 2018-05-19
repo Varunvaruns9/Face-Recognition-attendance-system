@@ -3,6 +3,11 @@ import numpy as np                                                              
 import sqlite3
 import dlib
 import os                                                                       # for creating folders
+from subprocess import run
+import sys
+
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 cap = cv2.VideoCapture(0)
 detector = dlib.get_frontal_face_detector()
