@@ -69,6 +69,19 @@ for row in range(2, sheet.max_row + 1):
 			sheet['%s%s' % (col, str(row))] = 1
 
 wb.save(filename = "reports.xlsx")
+
+import shutil
+folder = './Cropped_faces'
+for the_file in os.listdir(folder):
+    file_path = os.path.join(folder, the_file)
+    try:
+        if os.path.isfile(file_path):
+            os.unlink(file_path)
+        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+    except Exception as e:
+        print(e)
+
+
 #currentDir = os.path.dirname(os.path.abspath(__file__))
 #imgurl = urllib.pathname2url(os.path.join(currentDir, "1.jpg"))
 #res = CF.face.detect(imgurl)
