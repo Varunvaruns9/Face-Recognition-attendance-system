@@ -9,8 +9,8 @@ GPIO.setwarnings(False)
 
 velocity = 100
 
-runTime = .11
-error = 0.03
+runTime = .15
+error = 0.04
 
 stopTime = 0.1
 
@@ -32,8 +32,8 @@ PWM2.start(0)
 
 for i in range(0,iterations):
 	cap = cv2.VideoCapture(0)
+	print(cap.isOpened())
 	while cap.isOpened()==False:
-		print("Camera couldn't start. Trying again...")
 		sleep(5)
 		cap=cv2.VideoCapture(0)
 	print("iter:" +  str(i))
@@ -47,41 +47,17 @@ for i in range(0,iterations):
 	ret, img = cap.read()
 	imagename = "test.jpg"
 	cv2.imwrite(imagename, img)
-	run(["python", "-W", "ignore",  "detect.py", imagename])
-	run(["python", "-W", "ignore", "spreadsheet.py", ])
-	run(["python","-W", "ignore", "identify.py", ])
+	run(["python", "-W", "ignore", "detect.py", imagename])
+	run(["python", "spreadsheet.py", ])
+	run(["python", "identify.py", ])
 	run(["rm", "test.jpg"])
 	cap.release()
 	sleep(stopTime)
 
 for i in range(0,iterations):
 	cap = cv2.VideoCapture(0)
+	print(cap.isOpened())
 	while cap.isOpened()==False:
-		print("Camera couldn't start. Trying again...")
-		sleep(5)
-		cap=cv2.VideoCapture(0)
-	print("iter:" +str(i))
-	GPIO.output(int1, False)
-	PWM2.ChangeDutyCycle(velocity)
-	sleep(runTime-error)
-	GPIO.output(int2, GPIO.LOW)
-	PWM2.ChangeDutyCycle(0)
-	GPIO.output(int1, False)
-	sleep(0.1)
-	ret, img = cap.read()
-	imagename = "test.jpg"
-	cv2.imwrite(imagename, img)
-	run(["python", "-W", "ignore",  "detect.py", imagename])
-	run(["python", "-W", "ignore", "spreadsheet.py", ])
-	run(["python","-W", "ignore", "identify.py", ])
-	run(["rm", "test.jpg"])
-	cap.release()
-	sleep(stopTime)
-
-for i in range(0,iterations):
-	cap = cv2.VideoCapture(0)
-	while cap.isOpened()==False:
-		print("Camera couldn't start. Trying again...")
 		sleep(5)
 		cap=cv2.VideoCapture(0)
 	print("iter:" +str(i))
@@ -95,9 +71,9 @@ for i in range(0,iterations):
 	ret, img = cap.read()
 	imagename = "test.jpg"
 	cv2.imwrite(imagename, img)
-	run(["python", "-W", "ignore",  "detect.py", imagename])
-	run(["python", "-W", "ignore", "spreadsheet.py", ])
-	run(["python","-W", "ignore", "identify.py", ])
+	run(["python", "detect.py", imagename])
+	run(["python", "spreadsheet.py", ])
+	run(["python", "identify.py", ])
 	run(["rm", "test.jpg"])
 	cap.release()
 	sleep(stopTime)
@@ -105,13 +81,36 @@ for i in range(0,iterations):
 for i in range(0,iterations):
 	cap = cv2.VideoCapture(0)
 	while cap.isOpened()==False:
-		print("Camera couldn't start. Trying again...")
+		sleep(5)
+		cap=cv2.VideoCapture(0)
+	print("iter:" +str(i))
+	GPIO.output(int1, False)
+	PWM2.ChangeDutyCycle(velocity)
+	sleep(runTime-error)
+	GPIO.output(int2, GPIO.LOW)
+	PWM2.ChangeDutyCycle(0)
+	GPIO.output(int1, False)
+	sleep(0.1)
+	ret, img = cap.read()
+	imagename = "test.jpg"
+	cv2.imwrite(imagename, img)
+	run(["python", "detect.py", imagename])
+	run(["python", "spreadsheet.py", ])
+	run(["python", "identify.py", ])
+	run(["rm", "test.jpg"])
+	cap.release()
+	sleep(stopTime)
+
+for i in range(0,iterations):
+	cap = cv2.VideoCapture(0)
+	print(cap.isOpened())
+	while cap.isOpened()==False:
 		sleep(5)
 		cap=cv2.VideoCapture(0)
 	print("iter:" +str(i))
 	GPIO.output(int2,False)
 	PWM1.ChangeDutyCycle(velocity)
-	sleep(runTime-error/2)
+	sleep(runTime)
 	GPIO.output(int1, GPIO.LOW)
 	PWM1.ChangeDutyCycle(0)
 	GPIO.output(int2, False)
@@ -119,9 +118,9 @@ for i in range(0,iterations):
 	ret, img = cap.read()
 	imagename = "test.jpg"
 	cv2.imwrite(imagename, img)
-	run(["python", "-W", "ignore",  "detect.py", imagename])
-	run(["python", "-W", "ignore", "spreadsheet.py", ])
-	run(["python","-W", "ignore", "identify.py", ])
+	run(["python", "detect.py", imagename])
+	run(["python", "spreadsheet.py", ])
+	run(["python", "identify.py", ])
 	run(["rm", "test.jpg"])
 	cap.release()
 	sleep(stopTime)
