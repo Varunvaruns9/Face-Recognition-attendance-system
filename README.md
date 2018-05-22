@@ -1,10 +1,1 @@
-# Autoattendance-Cognitive
-
-This is our group project for face recognition based attendence system. We implemented this system using OpenCV only and the using dlib for face detection and openCV for face recognition but did not get much accuracy.
-
-We then tried using OpenFace but since neural networks require high graphic support, so we failing to get it setup on our computers.
-
-We then used dlib for face detection and microsoft's vision cognitive api for face recognition and got a accuracy of 100% in a classroom of 55 students. We have a video testing of this system in a classroom of 27 students uploaded here : https://youtu.be/FeNasBaXdhg
-This accuracy is because of the microsoft's neural network formed on our dataset. We used the camera of the phone OenPlus 3T.
-
-More updates later.
+Our project aims to make the lives of teachers easier by automatically marking students' attendance using Face recognition. It'll reduce the time wasted in taking attendance and also prevent proxy attendance. This project will also upload the attendance directly to a spreadsheet. It will not cause any disturbance during teaching and also save time. Although, it has some limitations on the distance from the students from which it can work, the use of high quality cameras and multiple cameras can reduce it. The project is quite realistic and efficient. 
