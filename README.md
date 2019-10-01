@@ -1,3 +1,5 @@
+# Face Recognition Attendance System
+
 Our project aims to make the lives of teachers easier by automatically marking students' attendance using Face recognition. It'll reduce the time wasted in taking attendance and also prevent proxy attendance. This project will also upload the attendance directly to a spreadsheet. It will not cause any disturbance during teaching and also save time. Although, it has some limitations on the distance from the students from which it can work, the use of high quality cameras and multiple cameras can reduce it. The project is quite realistic and efficient. 
 
 Instructions:
